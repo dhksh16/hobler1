@@ -1,2 +1,13 @@
-<h1>Home#index</h1>
-<p>안녕하세요</p>
+<center>
+<h1>결정장애 해소서비스 호블러</h1>
+
+<div style="margin-bottom:2em;">
+    <%= image_tag "호블러발표표지2.jpg", width: "600", height: "400", style: "margin:2em 0"%>
+</div>
+
+<% if user_signed_in? %>
+  <p><%= link_to "로그아웃", destroy_user_session_path, method: :delete, data: {confirm: "Are you sure?" }, class: 'btn btn-default'%></p>
+<% else %>
+  <p><%= link_to "로그인", new_user_session_path, class: 'btn btn-default' %></p>
+<% end %>
+</center>
