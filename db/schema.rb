@@ -47,6 +47,9 @@ ActiveRecord::Schema.define(version: 20160715164751) do
     t.string   "last_sign_in_ip"
     t.string   "name"
     t.string   "confirmed_at"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "image"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end

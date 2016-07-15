@@ -22,6 +22,10 @@ class DeviseCreateUsers < ActiveRecord::Migration
       ##시드때문에 추가
       t.string :name
       t.string :confirmed_at
+      t.string :provider
+      t.string :uid
+      t.string :image
+
       ## Confirmable
       #t.string   :confirmation_token
       #t.datetime :confirmed_at

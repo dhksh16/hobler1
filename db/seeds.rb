@@ -13,5 +13,5 @@ admin_user.add_role :admin
 admin_user = User.create( name: "관리자2", email: 'younhj001@gmail.com', password: 'younhj001', confirmed_at: Time.now )
 admin_user.add_role :admin
 
-admin_user = User.create( name: "관리자1", email: 'ceju317013@gmail.com', password: 'ceju317013', confirmed_at: Time.now )
+admin_user = User.create( name: "관리자3", email: 'ceju317013@gmail.com', password: 'ceju317013', confirmed_at: Time.now )
 admin_user.add_role :admin
