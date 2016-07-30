@@ -7,9 +7,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-
     <%= csrf_meta_tags %>
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<style>
+    .container{
+        width:100vw;
+        margin:0px;
+        padding:0px;
+        border-bottom:0px;
+    }
+    .navbar-collapse{
+        background-color:#FFCD12 !important;
+        width:95%;
+        min-width:1000px;
+        margin-left:3% !important;
+    }
+
+    .navbar-default .navbar-nav > li > a{
+        background-image:none !important;
+        background-color:#FFCD12 !important;
+        height:100%;
+        padding:0px !important;
+        font-size:1.2em;
+        color:#fff !important;
+        box-shadow:none !important;
+    }
+    .container, .navbar-header, .navbar-brand, .navbar-collapse.collapse, .navbar-nav, .navbar-nav > li{
+        height:100% !important;
+    }
+    .navbar-brand{
+        padding:0px !important;
+    }
+    .navbar{
+        height:10vh;
+        min-height:50px;
+    }
+    .navbar-default .navbar-nav > li {
+        width:50%;
+        padding-top:10%;
+    }
+    .navbar-nav{
+        width:15%;
+    }
+
+    .navbar-default{
+        background-image:none !important;
+        background-color:#FFCD12 !important;
+        border:0px;
+    }
+    #search_box{
+        width:140px;
+        margin-top:1.5%;
+    }
+
+</style>
   </head>
   <body>
       <!-- Fixed navbar -->
@@ -22,7 +80,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">호블러</a>
+            
           </div>
 
           <div class="navbar-collapse collapse">
@@ -30,15 +88,21 @@
               <li class="active"><%= link_to "Home", root_path %></li>
               <li><%= link_to "Posts", "/posts" %></li>
             </ul>
-
+<a class="navbar-brand" href="/">
+    <%= image_tag "logo.png", height: "100%", style: "margin-left:30vw; margin-right:13vw;"%>
+    </a>
+           <input type="search" id="search_box">
+              <%= image_tag "search.png", height: "30%", style: ""%>
             <ul class="nav navbar-nav navbar-right">
               <% if user_signed_in? %>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <%= image_tag(current_user.image, size: '20x20', style:'border-radius:3px;vertical-align:top;') if current_user.image %>
+                    
                     <%= current_user.name %>
                     <b class="caret"></b>
                   </a>
+                    
                   <ul class="dropdown-menu">
                     <li><%= link_to "My Profile", edit_user_registration_path %></li>
                     <li><%= link_to "Roles : " + user_roles(current_user), '#' %></li>
@@ -46,6 +110,7 @@
                 </li>
                 <li><%= link_to "Sign out", destroy_user_session_path, method: :delete, data: { confirm: "Are you sure?" } %></li>
               <% else %>
+                
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Log in
                    <b class="caret"></b></a>

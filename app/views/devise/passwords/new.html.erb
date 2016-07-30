@@ -1,15 +1,57 @@
-<h2>Forgot your password?</h2>
+<style>
+    section{
+        width:40%;
+        min-width:500px;
+        height:100%;
+        margin-left:auto;
+        margin-right:auto;
+        margin-top:5%;
+    }
+    label{
+        width:50%;
+        float:left;
+    }
+    .form-control{
+        width:50%;
+        min-height:25px;
+        height:4vh;
+        float:left;
+    }
+    .simple_form > .form-group, #detail > .form-group{
+        width:100% !important;
+    }
+    .form-group{
+        width:100%;
+        float:left;
+    }
+    a, a:visited{
+        color:#4374D9;
+    }
+    .col-md-12{
+        padding:0px !important;
+    }
+    .sub{
+        float:right;
+        background-color:#FFA7A7 !important;
+        color:#fff !important;
+        border:0px;
+        border-radius:5px;
+        background-image:none;
+    }
+</style>
+<section>
+    <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= f.error_notification %>
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
+      <div class="form-inputs">
+        <%= f.input :email, required: true, autofocus: true %>
+      </div>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-  </div>
+      <div class="form-actions">
+        <%= f.button :submit, "Send me reset password", class:'sub' %>
+      </div>
+    <% end %>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %>
-  </div>
-<% end %>
+    <%= render "devise/shared/links" %>
+</section>
 
-<%= render "devise/shared/links" %>

@@ -1,36 +1,109 @@
+
+
 <!-- 이래야 아이콘이 보여 ㅠㅠ -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-<h2>Listing posts</h2>
+<style>
+    .container{
+        width:100vw;
+        margin:0px;
+        padding:0px;
+        border-bottom:0px;
+    }
+    .navbar-collapse{
+        background-color:#FFCD12 !important;
+        width:95%;
+        min-width:1000px;
+        margin-left:3% !important;
+    }
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Created by</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
+    .navbar-default .navbar-nav > li > a{
+        background-image:none !important;
+        background-color:#FFCD12 !important;
+        height:100%;
+        padding:0px !important;
+        font-size:1.2em;
+        color:#fff !important;
+        box-shadow:none !important;
+    }
+    .container, .navbar-header, .navbar-brand, .navbar-collapse.collapse, .navbar-nav, .navbar-nav > li{
+        height:100% !important;
+    }
+    .navbar-brand{
+        padding:0px !important;
+    }
+    .navbar{
+        height:10vh;
+        min-height:50px;
+    }
+    .navbar-default .navbar-nav > li {
+        width:50%;
+        padding-top:10%;
+    }
+    .navbar-nav{
+        width:15%;
+    }
 
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td class="col-md-6 col-xs-6"><%= post.title %></td>
-        <td><%= post.user.present? ? post.user.email : "n/a" %>, <%= time_ago_in_words(post.created_at) %> ago</td>
-        <td>
+    .navbar-default{
+        background-image:none !important;
+        background-color:#FFCD12 !important;
+        border:0px;
+    }
+    #search_box{
+        width:140px;
+        margin-top:1.5%;
+    }
+    .sub{
+        float:right;
+        background-color:#FFA7A7 !important;
+        color:#fff !important;
+        border:0px;
+        border-radius:5px;
+        background-image:none;
+    }
+    section{
+        width:90%;
+        min-width:500px;
+        height:100%;
+        margin-left:auto;
+        margin-right:auto;
+        margin-top:5%;
+    }
 
-          <%= link_to icon('eye-open'), post %>&nbsp;
-          <% if user_signed_in? %>
-            <%= link_to icon('edit'), edit_post_path(post) if post.updatable_by? current_user %>&nbsp;
-            <%= link_to icon('trash'), post, method: :delete, data: { confirm: 'Are you sure?' } if post.deletable_by? current_user %>
-          <% end %>
+</style>
 
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
+<section>
+    <h2>Listing posts</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Created by</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
 
-<%= link_to 'New Post', new_post_path, class: "btn btn-default" %>
+      <tbody>
+        <% @posts.each do |post| %>
+          <tr>
+            <td class="col-md-6 col-xs-6"><%= post.title %></td>
+            <td><%= post.user.present? ? post.user.email : "n/a" %>, <%= time_ago_in_words(post.created_at) %> ago</td>
+            <td>
+
+              <%= link_to icon('eye-open'), post %>&nbsp;
+              <% if user_signed_in? %>
+                <%= link_to icon('edit'), edit_post_path(post) if post.updatable_by? current_user %>&nbsp;
+                <%= link_to icon('trash'), post, method: :delete, data: { confirm: 'Are you sure?' } if post.deletable_by? current_user %>
+              <% end %>
+
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
+
+    <%= link_to 'New Post', new_post_path, class: "btn btn-default sub" %>
+</section>
