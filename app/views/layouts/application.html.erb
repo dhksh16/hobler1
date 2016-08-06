@@ -104,7 +104,7 @@
                   </a>
                     
                   <ul class="dropdown-menu">
-                    <li><%= link_to "My Profile", edit_user_registration_path %></li>
+                      <li><%= link_to "My Profile", home_mypage_path %></li>
                     <li><%= link_to "Roles : " + user_roles(current_user), '#' %></li>
                   </ul>
                 </li>
@@ -134,5 +134,13 @@
         <%= yield %>
 
       </div> <!-- /container -->
+      
+      <script>
+
+          $('.dropdown-toggle').dropdown();
+
+      
+      </script>
   </body>
 </html>
+
