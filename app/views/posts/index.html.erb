@@ -91,6 +91,9 @@
             <td><%= post.user.present? ? post.user.email : "n/a" %>, <%= time_ago_in_words(post.created_at) %> ago</td>
             <td>
 
+              <p id="post_<%= post.id %>_likes"><%= render partial: "likes", locals: {post: post} %></p>
+              <hr />
+
               <%= link_to icon('eye-open'), post %>&nbsp;
               <% if user_signed_in? %>
                 <%= link_to icon('edit'), edit_post_path(post) if post.updatable_by? current_user %>&nbsp;

@@ -38,6 +38,9 @@ class PostsController < ApplicationController
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+
+
+
   end
 
   # PATCH/PUT /posts/1
@@ -60,12 +63,15 @@ class PostsController < ApplicationController
   # DELETE /posts/1.json
   def destroy
     authorize_action_for @post
-    
+
     @post.destroy
     respond_to do |format|
       format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
     end
+
+
+
   end
 
   private

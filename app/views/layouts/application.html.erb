@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Wano1</title>
+    <title>Hobler</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
@@ -80,7 +80,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            
+
           </div>
 
           <div class="navbar-collapse collapse">
@@ -96,13 +96,14 @@
             <ul class="nav navbar-nav navbar-right">
               <% if user_signed_in? %>
                 <li class="dropdown">
+
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <%= image_tag(current_user.image, size: '20x20', style:'border-radius:3px;vertical-align:top;') if current_user.image %>
-                    
+
                     <%= current_user.name %>
                     <b class="caret"></b>
                   </a>
-                    
+
                   <ul class="dropdown-menu">
                     <li><%= link_to "My Profile", edit_user_registration_path %></li>
                     <li><%= link_to "Roles : " + user_roles(current_user), '#' %></li>
@@ -110,7 +111,7 @@
                 </li>
                 <li><%= link_to "Sign out", destroy_user_session_path, method: :delete, data: { confirm: "Are you sure?" } %></li>
               <% else %>
-                
+
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Log in
                    <b class="caret"></b></a>
