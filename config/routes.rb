@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  resources :posts
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
+  resources :posts do
+    resource :like, module: :posts
+  end
+
   get 'home/index'
   get 'home/mypage'
   get 'home/recommend'
@@ -10,6 +14,9 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'home#index'
+
+  get ':controller(/:action(:/id))'
+  post ':controller(/:action(:/id))'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

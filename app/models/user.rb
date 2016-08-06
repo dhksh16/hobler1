@@ -7,8 +7,18 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
   has_many :posts, dependent: :destroy
+  has_many :likes
 
     after_create :set_default_role, if: Proc.new { User.count > 1 }
+
+       def likes?(post)
+         post.likes.where(user_id: id).any?
+       end
+
+       def avatar_url
+         hash = Digest::MD5.hexdigest(email)
+         "http://www.gravatar.com/avatar/#{hash}"
+       end
 
    private
 
