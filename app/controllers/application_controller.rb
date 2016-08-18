@@ -9,4 +9,5 @@ class ApplicationController < ActionController::Base
     redirect_to request.referrer.presence || root_path, :alert => 'You are not authorized to complete that action.'
   end
 
+
 end

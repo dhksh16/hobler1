@@ -1,0 +1,18 @@
+<p>
+
+<% unless current_user.likes?(post) %>
+  <% puts %>
+    <% if user_signed_in? && current_user.unlikes?(post) %>
+      <%= link_to "싫어요 취소", post_unlike_path(post), method: :delete, remote: true %>
+    <% else %>
+      <%= link_to "싫어요", post_unlike_path(post), method: :post, remote: true %>
+    <% end %>
+
+<% end %>
+
+  싫어요 갯수 <%= post.unlikes.count %>
+
+  <% post.unlikes.each do |unlike| %>
+    <%= image_tag unlike.user.avatar_url, width: 20 %>
+  <% end %>
+</p>

@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
          :omniauthable, :omniauth_providers => [:facebook]
   has_many :posts, dependent: :destroy
   has_many :likes
+  has_many :unlikes
 
     after_create :set_default_role, if: Proc.new { User.count > 1 }
 
@@ -19,6 +20,11 @@ class User < ActiveRecord::Base
          hash = Digest::MD5.hexdigest(email)
          "http://www.gravatar.com/avatar/#{hash}"
        end
+
+       def unlikes?(post)
+         post.unlikes.where(user_id: id).any?
+       end
+
 
    private
 

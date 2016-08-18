@@ -39,8 +39,6 @@ class PostsController < ApplicationController
       end
     end
 
-
-
   end
 
   # PATCH/PUT /posts/1
@@ -70,9 +68,22 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
 
-
-
   end
+
+  def likes
+      respond_to do |format|
+        format.html { redirect_to @post }
+        format.js
+      end
+  end
+
+  def unlikes
+      respond_to do |format|
+        format.html { redirect_to @post }
+        format.js
+      end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
