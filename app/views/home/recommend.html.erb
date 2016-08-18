@@ -111,8 +111,9 @@
     src.push("<%= asset_path('product2.PNG') %>");
     src.push("<%= asset_path('product3.PNG') %>");
     src.push("<%= asset_path('product4.PNG') %>");
-    src.push("<%= asset_path('product4.PNG') %>");
-    src.push("<%= asset_path('product4.PNG') %>");
+    src.push("<%= asset_path('product5.PNG') %>");
+    src.push("<%= asset_path('product6.PNG') %>");
+
 
     for(var i=0;i<5;i++){//#r_list의 이미지 초기화
         $("#r_list").append('<img src='+src[i]+">");
@@ -122,18 +123,21 @@
     
     $("#left_btn").click(function(){//왼쪽 버튼 클릭
         if($("#r_list > img").first().attr('src')!=src[0]){
-            $("#r_list").text(" ");//#r_list 첫번째 이미지가 src의 첫번째 이미지가 아니면, 우선 #r_list를 비운다.
             
             var temp=0;
+            
             for(var i=0;i<src.length;i++){
                 if($("#r_list > img").first().attr('src')==src[i]){
                     temp=i;
                 }
             }
+
+            temp=temp-1;
             
-            for(var i=temp;i<temp+5;i++){
-                $("#r_list").append('<img src='+src[i]+'>');
-            }
+            $("#r_list > img").each(function(){
+                $(this).attr('src', src[temp]);
+                temp=temp+1;
+            });
             
         }else{
             console.log("첫번쨰 사진");
@@ -143,21 +147,15 @@
     
     
     $("#right_btn").click(function(){//오른쪽 버튼 클릭
-        if($("#r_list > img").last().attr('src')!=src[src.length]){
-            //$("#r_list").text(" ");//#r_list 마지막 이미지가 src의 마지막 이미지가 아니면, 우선 #r_list를 비운다.
-            console.log(src[src.length-1]);
-            console.log($("#r_list > img").last().attr('src'));
+        if($("#r_list > img").last().attr('src')!=src[src.length-1]){
+
+ 
             var temp=0;
             for(var i=0;i<src.length;i++){
                 if($("#r_list > img").first().attr('src')==src[i]){
                     temp=i;
                 }
             }//for문을 돌리면서 #r_list의 첫번째 이미지가 src의 몇번째에 저장되있나 찾는다.
-            
-            //for(var i=temp+1;i<temp+6;i++){
-            //   $("#r_list").append('<img src='+src[i]+'>');
-            //}//for문을 돌리면서 #r_list의 이미지를 바꿈.
-            
 
             $("#r_list > img").each(function(){
                 temp=temp+1;
@@ -175,14 +173,17 @@
     
     var chk=false;
     $("#r_list > img").on('dragstart', function(){
-        console.log($(this).attr('src'));
+
         console.log('dragstart');
+        
         temp_src=$(this).attr("src");
         chk=true;
     })
 
     $('#list').on('dragenter', function(){
+        
         console.log('dragenter');
+        
         if(chk==true){
             $(this).append('<img src='+temp_src+">");
             temp_src='undefined';
