@@ -1,42 +1,69 @@
 <style>
-    section{
-        width:40%;
-        min-width:500px;
-        height:100%;
-        margin-left:auto;
-        margin-right:auto;
-        margin-top:5%;
-    }
-    label{
-        width:50%;
-        float:left;
-    }
-    .form-control{
-        width:50%;
-        min-height:25px;
-        height:4vh;
-        float:left;
-    }
-    .simple_form > .form-group, #detail > .form-group{
-        width:100% !important;
-    }
-    .form-group{
-        width:100%;
-        float:left;
-    }
-    a, a:visited{
-        color:#4374D9;
-    }
-    .col-md-12{
-        padding:0px !important;
-    }
     .sub{
-        float:right;
         background-color:#FFA7A7 !important;
         color:#fff !important;
         border:0px;
         border-radius:5px;
         background-image:none;
+    }
+    @media (min-width: 767px){
+        section{
+            width:40%;
+            min-width:500px;
+            height:100%;
+            margin-left:auto;
+            margin-right:auto;
+            margin-top:5%;
+        }
+        label{
+            width:50%;
+            float:left;
+        }
+        .form-control{
+            width:50%;
+            min-height:25px;
+            height:4vh;
+            float:left;
+        }
+        .simple_form > .form-group, #detail > .form-group{
+            width:100% !important;
+        }
+        .form-group{
+            width:100%;
+            float:left;
+        }
+        a, a:visited{
+            color:#4374D9;
+        }
+        .col-md-12{
+            padding:0px !important;
+        }
+        .sub{
+            float:right;
+        }
+    }@media(max-width:767px){
+        #new_user{
+            margin-top:45%;
+        }
+        section{
+            width:90%;
+            margin-left:auto;
+            margin-right:auto;
+        }
+        .form-group > label{
+            width:35%;
+            float:left;
+        }
+        .form-group > input{
+            width:65%;
+        }
+        .checkbox{
+            width:65%;
+            float:right;
+        }
+        .sub{
+            width:100%;
+        }
     }
 </style>
 <section>
