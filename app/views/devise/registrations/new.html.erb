@@ -123,9 +123,15 @@
       <%= f.error_notification %>
 
       <div class="form-group">
-        <%= f.input :email, required: true, autofocus: true, input_html: { class: 'form-control' } 
-%>
-        <input type="button" value="중복체크" id="re_chk">
+        <%= f.input :email, required: true, autofocus: true, input_html: { class: 'form-control' }%>
+        <input type="button" value="중복체크" id="re_chk" onclick="myFunction()">
+
+          <script>
+          function myFunction() {
+              alert("<%= f.error_notification %>");
+          }
+          </script>
+
       </div>
       <div class="form-group">
         <%= f.input :password, required: true, input_html: { class: 'form-control' } %>

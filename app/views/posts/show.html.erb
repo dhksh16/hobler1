@@ -8,9 +8,14 @@
     <%= simple_format @post.content %>
   </div>
 
-  <div id="post_<%= @post.id %>_likes">
-    <%= render partial: "likes", locals: {post: @post} %>
-  </div>
+    <div id="post_<%= @post.id %>_likes">
+      <%= render partial: "likes", locals: {post: @post} %>
+    </div>
+
+    <div id="post_<%= @post.id %>_unlikes">
+      <%= render partial: "unlikes", locals: {post: @post} %>
+    </div>
+
 
   <div class="user">
     <strong>Created by </strong>

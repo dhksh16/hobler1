@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     resource :like, module: :posts
   end
 
+  resources :posts do
+    resource :unlike, module: :posts
+  end
+
   get 'home/index'
   get 'home/mypage'
   get 'home/recommend'

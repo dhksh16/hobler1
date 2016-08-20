@@ -93,6 +93,9 @@
 
               <p id="post_<%= post.id %>_likes"><%= render partial: "likes", locals: {post: post} %></p>
               <hr />
+              <p id="post_<%= post.id %>_unlikes"><%= render partial: "unlikes", locals: {post: post} %></p>
+              <hr />
+
 
               <%= link_to icon('eye-open'), post %>&nbsp;
               <% if user_signed_in? %>
