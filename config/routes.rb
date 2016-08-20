@@ -24,12 +24,11 @@ Rails.application.routes.draw do
   post ':controller(/:action(:/id))'
 
   # Example of regular route:
-<<<<<<< HEAD
+
 
   get ':controller(/:action(:/id))'
   post ':controller(/:action(:/id))'
-=======
->>>>>>> 6f12ec883bff403c1368513b20be3cb827e80856
+
 
   # Example of regular route:
 
