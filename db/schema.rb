@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160827055020) do
+=======
+ActiveRecord::Schema.define(version: 20160829122822) do
+>>>>>>> 6e41691d3c311b9a9d0ae47c84ec8cdb55988d4c
 
   create_table "likes", force: :cascade do |t|
     t.integer  "user_id"
@@ -30,12 +34,20 @@ ActiveRecord::Schema.define(version: 20160827055020) do
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
+<<<<<<< HEAD
   create_table "recommends", force: :cascade do |t|
     t.text     "list",       default: "--- []\n"
     t.text     "p_name",     default: "--- []\n"
     t.string   "email"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+=======
+  create_table "replies", force: :cascade do |t|
+    t.string   "content"
+    t.integer  "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+>>>>>>> 6e41691d3c311b9a9d0ae47c84ec8cdb55988d4c
   end
 
   create_table "roles", force: :cascade do |t|
