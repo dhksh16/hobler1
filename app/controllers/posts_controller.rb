@@ -13,6 +13,16 @@ class PostsController < ApplicationController
   def show
   end
 
+  def r_write
+  reply = Reply.new
+  reply.content = params[:content]
+  reply.post_id = params[:post_id]
+  reply.save
+
+  redirect_to :back
+
+  end
+
   # GET /posts/new
   def new
     @post = Post.new
