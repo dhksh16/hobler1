@@ -1,0 +1,247 @@
+<style>
+    .container > header{
+        margin-left:auto;
+        margin-right:auto;
+    }
+    header > p{
+        text-align:center;
+    }
+    header > h1, header >p, header > span{
+        float:left;
+        margin : 0px;
+        margin-left:1%;
+    }
+    header > span{
+        font-size:2em;
+        line-height:1.2 !important;
+    }
+    header >p{
+        line-height:4;
+    }
+    #name{
+        font-weight:bold;
+    }
+    section{
+        clear:both;
+    }
+    section > article >header{
+        width:90%;
+        margin-left:5%;
+        text-align:center;
+        font-size:1.2em;
+        height:2vh;
+        min-height:45px;
+        margin-bottom:5%;
+        border-radius:10px;
+        font-weight:bold;
+        border:3px solid #F15F5F;
+    }
+    article > section{
+        height:85%;
+        background:url(<%=image_path('mypage_lst.png')%>);
+        background-size:100% 100%;
+        overflow:auto;
+        border-radius:10px;
+    }
+    
+    
+    .left_bar{
+        width:30%;
+        height:100%;
+        border:1px solid #002266;
+        float:left;
+        border-top-left-radius:5px;
+        border-bottom-left-radius:5px;
+    }
+    .right_bar{
+        width:70%;
+        height:100%;
+        background-color : #FFA7A7;
+        float:left;
+        border-top-right-radius:5px;
+        border-bottom-right-radius:5px;
+    }
+        header > h1{
+        font-size:2em;
+    }
+    @media (min-width: 767px){
+        .container > header{
+            width:90vw;
+            min-width:500px;
+            padding-left:37%;
+            margin-top:3%;
+        }
+        section{
+            width:90vw;
+            height:80vh;
+            margin-left:auto;
+            margin-right:auto;
+            min-width:1000px;
+        }
+        section > article{
+            width:30%;
+            height:100%;
+            margin-left:1.5%;
+            margin-right:1.5%;
+            float:left;
+            padding:1%;
+            border-radius:10px;
+        }
+        article > section{
+            width:90% !important;
+            min-width:0px !important;
+            display:block !important;
+        }
+        article > section > div{
+            width:90%;
+            margin-left:5%;
+            height:50%;
+            margin-top:5%;
+        }
+        .bar{
+            width:100%;
+            height:6%;
+            margin-top:4%;
+        }
+        #list{
+            width:90%;
+            margin-left:5%;
+            height:45vh;               background:url(<%=image_path('recommened_back.png')%>);
+            padding-top:3%;
+            background-repeat:no-repeat;
+            background-size:100% 100%;
+        }
+        #list > div{
+            overflow-y:auto;
+            width:96%;
+            margin-left:2%;
+            height:80%;
+        }
+        #list > div >div{
+            width:15%;
+            margin-left:2.5%;
+            margin-right:2.5%;
+            height:100%;
+            float:left;
+        }
+        #list > div > div > img{
+            width:100%;
+            height:80%;
+        }
+        #list > div > div > p{
+            margin-top:2%;
+        }
+        #reg{
+            float:right;
+            width:10%;
+            background-color:#fff !important;
+            color:#000 !important;
+            border:3px solid #F15F5F;
+            margin-right:5%;
+            margin-top:1%;
+            text-align:center;
+            border-radius:10px;
+        }
+    }@media(max-width:767px){
+        .container > header{
+            width:70vw;
+            margin-top:6%;
+        }
+        article > section{
+            display:none;
+            width:90%;
+            margin-left:5%;
+            padding-top:5%;
+            margin-bottom:5%;
+        }
+        article > section > div{
+            width:100%;
+            margin-bottom:5%;
+        }
+        .bar{
+            width:90%;
+            margin-left:5%;
+            height:2vh;
+            margin-top:2%;
+        }
+        #list{
+            display:none;
+        }
+        #reg{
+            display:none;
+        }
+    }
+</style>
+
+<header>
+    <h1 id="name"><%=current_user.name %></h1>
+    <p>님의</p>
+    <h1>MyPage</h1>
+    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+</header>
+<section>
+    <article>
+        <header>
+            게시 대기중인 호불호
+        </header>
+        <section>
+            <div>
+                <%= image_tag "product1.PNG", style: "width:80%; height:80%; margin-left:10%;"%>
+            </div>
+        </section>
+
+    </article>
+    <article>
+        <header>
+            내가 계시한 호불호
+        </header>
+        <section>
+            <div>
+                <%= image_tag "product1.PNG", style: "width:80%; height:80%; margin-left:10%;"%>
+                <div class="bar">
+                    <div class="left_bar">
+                    </div>
+                    <div class="right_bar">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <%= image_tag "product2.PNG", style: "width:80%; height:80%; margin-left:10%;"%>
+                <div class="bar">
+                    <div class="left_bar">
+                    </div>
+                    <div class="right_bar">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </article>
+    <article>
+        <header>
+            내가 투표한 호불호
+        </header>
+    </article>
+</section>
+
+<article id="list">
+    <div>
+        <% for i in 0..@list.length %>
+        <div>
+            <img src='<%= @list[i] %>'>
+            <p><%= @name[i] %></p>
+        </div>
+        <% end %>
+    </div>
+</article>
+
+<a href="/home/recommend" id="reg">맞춤상품 등록</a>
+<script>
+    $('article > header').click(function(){
+        if($(this).next().css('display')=='none'){
+            $(this).next().css('display', 'block');
+        }
+        else{
+            $(this).next().css('display', 'none');
+        }
+    })
+</script>

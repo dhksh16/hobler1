@@ -28,14 +28,14 @@ class HomeController < ApplicationController
       
       @lst= Recommend.all
       @list=Array.new
-      @name=Array.new
+      @name2=Array.new
       @lst.each do |x|
             if current_user.email == x.email 
                 x.list.split(",").each do |t| 
                          @list << t
                 end 
                 x.p_name.split(",").each do |t|
-                    @name << t
+                    @name2 << t
                 end
             end
         end
