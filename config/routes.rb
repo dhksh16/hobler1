@@ -12,8 +12,8 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'home/mypage'
   get 'home/recommend'
-  post 'post/r_write'
-
+  post 'posts/r_write'
+  post 'r_write/:post_id' => 'posts#r_write'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
