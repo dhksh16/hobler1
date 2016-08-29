@@ -6,8 +6,8 @@ class HomeController < ApplicationController
   def index
   end
   def recommend
-      
-      
+
+
       if !params[:search]
         @search = "%EA%B0%80%EB%B0%A9"
       else
@@ -20,13 +20,14 @@ class HomeController < ApplicationController
       doc.css("._productLazyImg").each do |x|
           @arr << x
       end
-      
+
       @name = Array.new
       doc.css(".info > a").each do |x|
           @name << x.inner_text
       end
-      
+
   end
   def search
   end
+
 end
