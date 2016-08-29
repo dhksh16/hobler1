@@ -9,7 +9,6 @@
 
 <% end %>
 
-  좋아요 갯수 <%= post.likes.count %>
 
   <% post.likes.each do |like| %>
     <%= image_tag like.user.avatar_url, width: 20 %>
@@ -17,3 +16,4 @@
 
 
 </p>
+<p>좋아요 갯수 <%= post.likes.count %></p>

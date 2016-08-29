@@ -1,12 +1,82 @@
+<style>
+    .alert{
+        background-color:#eaeaea !important;
+        background-image:none;
+        border:0px;
+    }
+    .container > h2{
+        text-align:center;
+        font-size:2em;
+    }
+    input[type="submit"]{
+        background-color:#FFA7A7 !important;
+        color:#fff !important;
+        border:0px;
+        border-radius:5px;
+        background-image:none;
+        float:right;
+    }
+    #post_content{
+        height:30vh;
+    }
+    .simple_form > .form-group:first-of-type{
+        margin-bottom:3%;
+    }
+    .back{
+        background-color:#A6A6A6 !important;
+        color:#fff !important;
+        border:0px;
+        border-radius:5px;
+        background-image:none;
+    }
+    .form-group > label{
+        width:15%;
+        float:left;
+    }
+    .form-group > input{
+        width:85%;
+    }
+    .back:hover{
+        background-color:#A6A6A6 !important;
+    }
+    @media (min-width: 767px){
+        section{
+            width:80%;
+            margin-left:auto;
+            margin-right:auto;
+        }
+        .simple_form > .form-group:first-of-type{
+            width:50%;
+            margin-left:auto;
+            margin-right:auto;
+        }
+        .col-md-12 > p{
+            font-size:0.3em;
+        }
+    }
+    @media (max-width: 767px){
+        .col-md-12 > p{
+            display:none;
+        }
+        input[type="submit"]{
+            width:100%;
+        }
+        .back{
+            width:100%;
+            margin-top:1%;
+        }
+    }
+</style>
 <h2>New post</h2>
-<div class="row">
-  <div class='col-md-12'>
-    <p style='text-align:right;'>
-      created by <%= current_user.email %>, Current Time : <%= Time.now %>
-    </p>
-  </div>
-</div>
-<%= render 'form' %>
+<section>
+    <div class="row">
+      <div class='col-md-12'>
+        <p style='text-align:right;'>
+          글쓴이 : <%= current_user.email %>, 현재시간 : <%= Time.now %>
+        </p>
+      </div>
+    </div>
+    <%= render 'form'%>
 
-<hr>
-<%= link_to 'Back', posts_path, class: "btn btn-default" %>
+    <%= link_to 'Back', posts_path, class: "btn btn-default back" %>
+</section>

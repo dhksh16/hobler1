@@ -4,6 +4,15 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 <style>
+   @import url(http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css);
+    body{
+        font-family: 'Nanum Brush Script', cursive;
+        font-size:2.3em;
+    }
+        ::-webkit-scrollbar {width: 8px; height: 8px; border: 3px solid #fff; }
+    ::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment {display: block; height: 10px; background: #efefef}
+    ::-webkit-scrollbar-track {background: #efefef; -webkit-border-radius: 10px; border-radius:10px; -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.2)}
+    ::-webkit-scrollbar-thumb {height: 50px; width: 50px; background: rgba(0,0,0,.2); -webkit-border-radius: 8px; border-radius: 8px; -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.1)}
     .container{
         width:100vw;
         margin:0px;
@@ -11,22 +20,25 @@
         border-bottom:0px;
     }
     .navbar-collapse{
-        background-color:#FFCD12 !important;
+        background-color:#FFf !important;
         width:95%;
         min-width:1000px;
-        margin-left:3% !important;
+        margin-left:auto !important;
     }
-
+    .btn{
+        font-size:1em !important;
+    }
     .navbar-default .navbar-nav > li > a{
         background-image:none !important;
-        background-color:#FFCD12 !important;
+        background-color:#FFf !important;
         height:100%;
         padding:0px !important;
         font-size:1.2em;
-        color:#fff !important;
+        color:#000 !important;
         box-shadow:none !important;
+        font-weight:bold;
     }
-    .container, .navbar-header, .navbar-brand, .navbar-collapse.collapse, .navbar-nav, .navbar-nav > li{
+    .container, .navbar-header, .navbar-brand, .navbar-nav, .navbar-nav > li{
         height:100% !important;
     }
     .navbar-brand{
@@ -35,46 +47,100 @@
     .navbar{
         height:10vh;
         min-height:50px;
+        border-bottom:3px solid #F15F5F !important;
     }
     .navbar-default .navbar-nav > li {
-        width:50%;
-        padding-top:10%;
+        width:25%;
+        padding-top:5%;
     }
     .navbar-nav{
-        width:15%;
+        width:30%;
     }
 
     .navbar-default{
         background-image:none !important;
-        background-color:#FFCD12 !important;
+        background-color:#FFf !important;
         border:0px;
     }
     #search_box{
         width:140px;
         margin-top:1.5%;
     }
+    .container > .navbar-collapse{
+        margin-top : 0px !important;
+        margin-bottom : 0px !important;
+        margin-right : 0px !important;
+    }
+    .form-control{
+        font-size:1em !important;
+    }
     .sub{
-        float:right;
         background-color:#FFA7A7 !important;
         color:#fff !important;
         border:0px;
         border-radius:5px;
         background-image:none;
+        float:right;
     }
-    section{
-        width:90%;
-        min-width:500px;
-        height:100%;
-        margin-left:auto;
-        margin-right:auto;
-        margin-top:5%;
+    .sub:hover{
+        background-color:#FFA7A7 !important;
+    }
+    td:last-of-type{
+        background-color:#eaeaea;
+    }
+    td > span{
+        float:left !important;
+        clear:both;
+    }
+    td > p{
+        float:left;
+        margin-left:3%;
+    }
+    td > div{
+        clear:both;
+        float:right;
+    }
+    p > a:hover{
+        background-color:#eaeaea !important;
+    }
+    th{
+        border-radius:13px;
+        border:2px solid #eaeaea !important;
+        text-align:center;
     }
 
+    @media (min-width: 767px){
+        .navbar-collapse.collapse{
+            height:100% !important;
+        }
+        section{
+            width:80%;
+            margin-left:auto;
+            margin-right:auto;
+            margin-top:3%;
+        }
+    }
+    @media(max-width:767px){
+        .navbar-brand{
+            display:none;
+        }
+        #search_box{
+            display:none;
+        }
+        #search_icon{
+            display:none;
+        }
+        .navbar-collapse{
+            border-bottom:2px solid #D5D5D5;
+        }
+        .sub{
+            width:100%;
+        }
+    }
 </style>
 
 
 <section>
-    <h2>Listing posts</h2>
     <table class="table">
       <thead>
         <tr>
@@ -91,18 +157,19 @@
             <td><%= post.user.present? ? post.user.email : "n/a" %>, <%= time_ago_in_words(post.created_at) %> ago</td>
             <td>
 
+            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>      
               <p id="post_<%= post.id %>_likes"><%= render partial: "likes", locals: {post: post} %></p>
-              <hr />
+              <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>  
               <p id="post_<%= post.id %>_unlikes"><%= render partial: "unlikes", locals: {post: post} %></p>
-              <hr />
 
 
+                <div>
               <%= link_to icon('eye-open'), post %>&nbsp;
               <% if user_signed_in? %>
                 <%= link_to icon('edit'), edit_post_path(post) if post.updatable_by? current_user %>&nbsp;
                 <%= link_to icon('trash'), post, method: :delete, data: { confirm: 'Are you sure?' } if post.deletable_by? current_user %>
               <% end %>
-
+                </div>
             </td>
           </tr>
         <% end %>

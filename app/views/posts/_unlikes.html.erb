@@ -10,9 +10,8 @@
 
 <% end %>
 
-  싫어요 갯수 <%= post.unlikes.count %>
-
   <% post.unlikes.each do |unlike| %>
     <%= image_tag unlike.user.avatar_url, width: 20 %>
   <% end %>
 </p>
+<p>  싫어요 갯수 <%= post.unlikes.count %></p>

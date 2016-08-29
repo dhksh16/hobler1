@@ -1,13 +1,100 @@
-<h2>Editing post </h2>
-<div class="row">
-  <div class='col-md-12'>
-    <p style='text-align:right;'>
-      created by <%= current_user.email %>, <%= time_ago_in_words(@post.created_at) %> ago
-    </p>
-  </div>
-</div>
-<%= render 'form' %>
+<style>
+    .alert{
+        background-color:#eaeaea !important;
+        background-image:none;
+        border:0px;
+    }
+    .container > h2{
+        text-align:center;
+        font-size:2em;
+    }
+    input[type="submit"]{
+        background-color:#FFA7A7 !important;
+        color:#fff !important;
+        border:0px;
+        border-radius:5px;
+        background-image:none;
+        float:right;
+    }
+    #post_content{
+        height:30vh;
+    }
+    .simple_form > .form-group:first-of-type{
+        margin-bottom:3%;
+    }
+    .back{
+        background-color:#A6A6A6 !important;
+        color:#fff !important;
+        border:0px;
+        border-radius:5px;
+        background-image:none;
+        float:left;
+    }
+    .show{
+        background-color:#60369C !important;
+        color:#fff !important;
+        border:0px;
+        border-radius:5px;
+        background-image:none;
+        float:left;
+    }
+    .form-group > label{
+        width:15%;
+        float:left;
+    }
+    .form-group > input{
+        width:85%;
+    }
+    .back:hover{
+        background-color:#A6A6A6 !important;
+    }
+    .show:hover{
+        background-color:#60369C !important;
+    }
+    @media (min-width: 767px){
+        section{
+            width:80%;
+            margin-left:auto;
+            margin-right:auto;
+        }
+        .simple_form > .form-group:first-of-type{
+            width:50%;
+            margin-left:auto;
+            margin-right:auto;
+        }
+        .col-md-12 > p{
+            font-size:0.3em;
+        }
+        .back{
+            margin-left:1%;
+        }
+    }
+    @media (max-width: 767px){
+        .col-md-12 > p{
+            display:none;
+        }
+        input[type="submit"]{
+            width:100%;
+        }
+        .back, .show{
+            width:100%;
+            margin-top:1%;
+        }
+    }
 
-<hr>
-<%= link_to 'Show', @post, class: 'btn btn-default' %>
-<%= link_to 'Back', posts_path, class: 'btn btn-default' %>
+</style>
+<h2>Edit post</h2>
+<section>
+
+    <div class="row">
+      <div class='col-md-12'>
+        <p style='text-align:right;'>
+          글쓴이 : <%= current_user.email %>, 작성시간 : <%= time_ago_in_words(@post.created_at) %> ago
+        </p>
+      </div>
+    </div>
+    <%= render 'form' %>
+
+    <%= link_to 'Show', @post, class: 'btn btn-default show' %>
+    <%= link_to 'Back', posts_path, class: 'btn btn-default back' %>
+</section>

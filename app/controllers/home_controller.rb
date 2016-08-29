@@ -26,7 +26,47 @@ class HomeController < ApplicationController
           @name << x.inner_text
       end
       
+      @lst= Recommend.all
+      @list=Array.new
+      @name=Array.new
+      @lst.each do |x|
+            if current_user.email == x.email 
+                x.list.split(",").each do |t| 
+                         @list << t
+                end 
+                x.p_name.split(",").each do |t|
+                    @name << t
+                end
+            end
+        end
   end
   def search
+  end
+  def store
+      
+      @arr= Recommend.new
+      
+      @arr.list = params[:lst].join(',')
+      @arr.p_name=params[:nm].join(',')
+      @arr.email=params[:email]
+      @arr.save
+      redirect_to('/home/recommend')
+  end
+  def mypage
+      @lst= Recommend.all
+      
+      @list=Array.new
+      @name=Array.new
+      @lst.each do |x|
+            if current_user.email == x.email 
+                x.list.split(",").each do |t| 
+                         @list << t
+                end 
+                x.p_name.split(",").each do |t|
+                    @name << t
+                end
+            end
+        end
+      
   end
 end

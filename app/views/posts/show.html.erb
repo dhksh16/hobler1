@@ -1,29 +1,122 @@
-<div class='post'>
-  <div class="title">
-    <h3>Title:
-    <%= @post.title %></h3>
-  </div>
+<style>
+    .alert{
+        background-color:#eaeaea !important;
+        background-image:none;
+        border:0px;
+    }
+    .user > div, .user > span{
+        float:right;
+    }
+    .user > div{
+        clear:both;
+    }
+    .user > span{
+        font-size:0.8em;
+        margin-right:0.5%;
+    }
+    .user{
+        height:13vh;
+        padding-top:1%;
+    }
+    .user > div > p{
+        float:left;
+    }
+    .edit{
+        background-color:#FFA7A7 !important;
+        color:#fff !important;
+        border:0px;
+        border-radius:5px;
+        background-image:none;
+    }
+    .edit:hover{
+        background-color:#FFA7A7 !important;
+    }
+    .back{
+        background-color:#A6A6A6 !important;
+        color:#fff !important;
+        border:0px;
+        border-radius:5px;
+        background-image:none;
+    }
+    .back:hover{
+        background-color:#A6A6A6 !important;
+    }
+    #btn{
+        margin-top:1%;
+    }
+    @media (min-width: 767px){
+        section{
+            width:80%;
+            margin-left:auto;
+            margin-right:auto;
+            margin-top:5%;
+            border:2px solid #F15F5F;
+            border-radius:10px;
+            padding:0.5%;
+        }
+        #btn{
+            width:80%;
+            margin-left:auto;
+            margin-right:auto;
+        }
+        section > .post{
+            border:1px solid #000;
+            border-radius:10px;
+        }
+        .edit, .back{
+            width:10%;
+        }
+        .back{
+            margin-left:40%;
+        }
+    }
+    @media (max-width: 767px){
+        .edit, .back{
+            width:100%;
+        }
+        .user > div:last-of-type{
+            font-size:0.8em;
+        }
+        .edit{
+            margin-top:1%;
+        }
+    }
 
-  <div class="content">
-    <%= simple_format @post.content %>
-  </div>
+</style>
+<section>
+        <div class='post'>
+          <div class="title">
+            <h3>Title:
+            <%= @post.title %></h3>
+          </div>
 
-    <div id="post_<%= @post.id %>_likes">
-      <%= render partial: "likes", locals: {post: @post} %>
-    </div>
-
-    <div id="post_<%= @post.id %>_unlikes">
-      <%= render partial: "unlikes", locals: {post: @post} %>
-    </div>
+          <div class="content">
+            <%= simple_format @post.content %>
+          </div>
 
 
-  <div class="user">
-    <strong>Created by </strong>
-    <%= @post.user.present? ? @post.user.email : "an anonymous user" %>,
-    <%= time_ago_in_words(@post.created_at) %> ago
-  </div>
+
+          <div class="user">
+              
+            <div id="post_<%= @post.id %>_likes">
+              <%= render partial: "likes", locals: {post: @post} %>
+            </div>
+            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>  
+
+            <div id="post_<%= @post.id %>_unlikes">
+              <%= render partial: "unlikes", locals: {post: @post} %>
+            </div>
+            <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> 
+            
+            <div>
+                <strong>Created by </strong>
+                <%= @post.user.present? ? @post.user.email : "an anonymous user" %>,
+                <%= time_ago_in_words(@post.created_at) %> ago
+            </div>
+          </div>
+        </div>
+</section>
+<div id='btn'>
+        <%= link_to 'Back', posts_path, class: 'btn btn-default back' %>
+        <%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-default edit' %>
 </div>
-
-<hr>
-<%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-default' %>
-<%= link_to 'Back', posts_path, class: 'btn btn-default' %>
